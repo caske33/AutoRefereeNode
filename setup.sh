@@ -9,3 +9,6 @@ sudo npm install -g grunt-cli
 cd AutoRefereeNode/
 sudo npm install -d
 sudo gem install compass
+cp config/env/development.json.default config/env/development.json
+cp config/env/production.json.default config/env/production.json
+cp config/env/test.json.default config/env/test.json
