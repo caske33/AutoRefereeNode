@@ -20,7 +20,7 @@ div(ng-init="initOne()")
 
 
   h2 Teams
-  p(ng-hide="match.teams")
+  p(ng-hide="match.teams && match.teams.length != 0")
     | No teams yet :(
   ul
     li(ng-repeat="team in match.teams") {{team.fullname}}
