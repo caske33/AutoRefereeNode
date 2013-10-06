@@ -1,0 +1,30 @@
+h1 List of Matches on the server
+div(ng-init="init()")
+  div(ng-repeat="match in matches").col-xs-4
+    div.panel.panel-primary
+      div.panel-heading
+        h1.panel-title {{match.map || match.world}}
+      div.panel-body
+        | played on 
+        strong {{match.world}}
+        br
+        span(ng-show="match.startTime")
+          span(ng-hide="match.endTime")
+            | started
+            strong(ng-time-difference, ng-start-time="match.startTime", ng-end-time="'now'" ng-cloak)
+            | ago ({{match.startTime | date:'medium'}} UTC)
+
+          span(ng-show="match.endTime")
+            | started on {{match.startTime | date:'medium'}} UTC
+            br
+            | ended on {{match.endTime | date:'medium'}} UTC
+            br
+            | lasted
+            strong(ng-time-difference, ng-start-time="match.startTime", ng-end-time="match.endTime")
+        strong(ng-hide="match.startTime")
+          | Not yet started!
+        br
+        br
+        a.btn.btn-primary(href="/match/{{match.id}}")
+          i.icon-play
+          |  Watch Live!

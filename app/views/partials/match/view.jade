@@ -1,0 +1,57 @@
+div(ng-init="initOne()")
+  h1 Map: {{match.map}}
+
+
+  h2 Time
+  p(ng-hide="match.startTime")
+    | Not yet started
+  dl(ng-show="match.startTime && match.endTime")
+    dt Started On
+    dd {{match.startTime | date:'medium'}} UTC
+    dt Ended On
+    dd {{match.endTime | date:'medium'}} UTC
+    dt Lasted for
+    dd(ng-time-difference, ng-start-time="match.startTime", ng-end-time="match.endTime")
+  dl(ng-show="match.startTime && !match.endTime")
+    dt Started On
+    dd {{match.startTime | date:'medium'}} UTC
+    dt Lasting for
+    dd(ng-time-difference, ng-start-time="match.startTime", ng-end-time="match.endTime")
+
+
+  h2 Teams
+  p(ng-hide="match.teams")
+    | No teams yet :(
+  ul
+    li(ng-repeat="team in match.teams") {{team.fullname}}
+
+
+  h2 Players
+  p(ng-hide="match.teams")
+    | No players yet :(
+  div(ng-repeat="team in match.teams")
+    div(ng-repeat="player in team.players").col-xs-4
+      div.panel(class="panel-{{team.color}}")
+        div.panel-heading
+          h1.panel-title {{player.ign}} ({{team.fullname}})
+        div.panel-body
+          div
+            i.icon-autoreferee-heart-full(ng-repeat="n in [] | range: player.hp/2")
+            i.icon-autoreferee-heart-half(ng-show="player.hp%2==1")
+            i.icon-autoreferee-heart-empty(ng-repeat="n in [] | range: 10-player.hp/2")
+            br
+            i.icon-autoreferee-hunger-full(ng-repeat="n in [] | range: player.hunger/2")
+            i.icon-autoreferee-hunger-half(ng-show="player.hunger%2==1")
+            i.icon-autoreferee-hunger-empty(ng-repeat="n in [] | range: 10-player.hunger/2")
+            br
+            span(ng-show="player.armor > 0")
+              i.icon-autoreferee-armor-full(ng-repeat="n in [] | range: player.armor/2")
+              i.icon-autoreferee-armor-half(ng-show="player.armor%2==1")
+              i.icon-autoreferee-armor-empty(ng-repeat="n in [] | range: 10-player.armor/2")
+              br
+            i.icon-frown.icon-large  {{player.deaths}} 
+            i.icon-smile.icon-large  {{player.kills}} 
+            i.icon-bullseye.icon-large  {{player.accuracy}}% 
+            i.icon-rocket.icon-large(ng-show="player.killstreak")  {{player.killstreak}} 
+
+

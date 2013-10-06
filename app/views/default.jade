@@ -1,0 +1,8 @@
+!!! 5
+html(lang='en', ng-app="ARNApp", ng-init="appName= '#{appName}'")
+  include head
+  body
+    nav.navbar.navbar-fixed-top.navbar-inverse(data-ng-include="'/partials/menu'")
+    div.container(ng-view)
+      block content
+    include foot

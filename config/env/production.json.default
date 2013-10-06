@@ -1,0 +1,6 @@
+{
+  "db": "postgresql://uers:pass@localhost/AutoRefereeNode",
+  "app": {
+    "name": "AutoRefereeNode"
+  },
+}

@@ -1,0 +1,7 @@
+{
+  "db": "postgresql://user:pass@localhost/AutoRefereeNodeTest",
+  "port": 3001,
+  "app": {
+    "name": "AutoRefereeNode - Test"
+  },
+}

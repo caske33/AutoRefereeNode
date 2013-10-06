@@ -1,0 +1,36 @@
+{
+  "name": "AutoRefereeNode",
+  "description": "A live server-webapplication for AutoReferee Matches",
+  "version": "1.0.0",
+  "private": true,
+  "author": "caske33",
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
+  "scripts": {
+    "start": "make start",
+    "test": "make test"
+  },
+  "dependencies": {
+    "express": "latest",
+    "jade": "latest",
+    "orm": "latest",
+    "pg": "latest",
+    "underscore": "latest",
+    "async": "latest",
+    "socket.io": "latest"
+  },
+  "devDependencies": {
+    "supertest": "latest",
+    "should": "latest",
+    "mocha": "latest",
+    "grunt": "latest",
+    "grunt-mocha-test": "latest",
+    "grunt-contrib-compass": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-nodemon": "latest",
+    "grunt-concurrent": "latest"
+  }
+}

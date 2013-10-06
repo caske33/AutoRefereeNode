@@ -1,0 +1,12 @@
+body {
+  padding-top: 70px;
+}
+
+$icon-autoreferee-sprite-dimensions: true;
+$icon-autoreferee-sprite-base-class: ".icon-autoreferee";
+@import "icon-autoreferee/*.png";
+@include all-icon-autoreferee-sprites(true);
+
+.icon-autoreferee{
+  display:inline-block;
+}

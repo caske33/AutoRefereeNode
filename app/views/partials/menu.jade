@@ -1,0 +1,12 @@
+div.navbar-inner(ng-controller="MenuController")
+  div.navbar-header
+    button(type="button", data-toggle="collapse", "data-target='.navbar-collapse'").navbar-toggle
+      span.sr-only Toggle navigation
+      i.icon-bar
+      i.icon-bar
+      i.icon-bar
+    a.navbar-brand(href="https://github.com/caske33/AutoRefereeNode",target="_blank") AutoRefereeNode
+  nav.navbar-collapse.collapse
+    ul.nav.navbar-nav
+      li(ng-repeat="item in menu")
+        a(href="{{item.link}}", target="{{item.target}}") {{item.title}}
