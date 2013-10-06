@@ -16,7 +16,7 @@ div(ng-init="initOne()")
     dt Started On
     dd {{match.startTime | date:'medium'}} UTC
     dt Lasting for
-    dd(ng-time-difference, ng-start-time="match.startTime", ng-end-time="match.endTime")
+    dd(ng-time-difference, ng-start-time="match.startTime", ng-end-time="'now'")
 
 
   h2 Teams
