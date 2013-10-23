@@ -81,22 +81,22 @@ function update_match(message, req, res){
             player_update.hunger = parseInt(parts[3],10);
             update_player_object(matchid, ign, player_update, req, res);
             break;
-          case "goal":
-            break;
+          /*case "goal":
+            break;*/
           case "kills":
             player_update.kills = parseInt(parts[3],10);
             update_player_object(matchid, ign, player_update, req, res);
             break;
-          case "deathpos":
-            break;
+          /*case "deathpos":
+            break;*/
           case "deaths":
             player_update.deaths = parseInt(parts[3],10);
             update_player_object(matchid, ign, player_update, req, res);
             break;
-          case "dominate":
+          /*case "dominate":
             break;
           case "revenge":
-            break;
+            break;*/
           case "accuracy":
             player_update.accuracy = parseInt(parts[3],10);
             update_player_object(matchid, ign, player_update, req, res);
@@ -129,9 +129,9 @@ function update_match(message, req, res){
             req.models.Team.find({match_id: matchid,name: teamname}).remove(function(err){
               if(err)
                 return res.jsonp(err);
-              
+
               req.socketio.sockets.in('match'+matchid).emit('update',{team: teamname, remove: teamname});
-              
+
               req.models.Team.create({match_id: matchid,name: teamname, fullname: teamname}, function(err, team){
                 if (err)
                   return res.jsonp(err);
@@ -190,10 +190,10 @@ function update_match(message, req, res){
               });
             });
             break;
-          case "goal":
+          /*case "goal":
             break;
           case "state":
-            break;
+            break;*/
           default:
             jsonp_command_not_found(res, message);
         }
@@ -212,7 +212,7 @@ function update_match(message, req, res){
               req.models.Match.create({world: world},function(err, match){
                 if (err) {
                   return res.jsonp(err);
-                } 
+                }
                 else {
                   match_ids[world] = match.id;
                   req.socketio.sockets.in('matches').emit('update',{add: match});
