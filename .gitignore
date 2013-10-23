@@ -3,3 +3,4 @@
 .sass-cache/
 node_modules/
 config/env/*.json
+public/css/*

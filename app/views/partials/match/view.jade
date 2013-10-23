@@ -33,7 +33,7 @@ div(ng-init="initOne()")
     div(ng-repeat="player in team.players").col-xs-4
       div.panel(class="panel-{{team.color}}")
         div.panel-heading
-          h1.panel-title {{player.ign}} ({{team.fullname}})
+          p.panel-title {{player.ign}} ({{team.fullname}})
         div.panel-body
           div
             i.icon-autoreferee-heart-full(ng-repeat="n in [] | range: player.hp/2")

@@ -3,7 +3,7 @@ div(ng-init="init()")
   div(ng-repeat="match in matches").col-xs-4
     div.panel.panel-primary
       div.panel-heading
-        h1.panel-title {{match.map || match.world}}
+        p.panel-title {{match.map || match.world}}
       div.panel-body
         | played on 
         strong {{match.world}}

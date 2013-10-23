@@ -9,4 +9,6 @@ div.navbar-inner(ng-controller="MenuController")
   nav.navbar-collapse.collapse
     ul.nav.navbar-nav
       li(ng-repeat="item in menu")
-        a(href="{{item.link}}", target="{{item.target}}") {{item.title}}
+        a(href="{{item.link}}", target="{{item.target}}")
+          i(class="{{item.icon_class}}")
+          |  {{item.title}}
