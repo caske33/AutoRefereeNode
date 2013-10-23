@@ -1,34 +1,65 @@
-//The different colors. First value is background for the panel box, 2nd is text-color for the panel-heading
-//$color: #background-color, #color;
-$black: #000000, #FFFFFF;
-$darkBlue: #000088, #FFFFFF;
-$darkGreen: #008800, #FFFFFF;
-$darkAqua: #008888, #FFFFFF;
-$darkRed: #AA0000, #FFFFFF;
-$darkPurple: #880088, #FFFFFF;
-$gold: #DDAA00, #FFFFFF;
-$gray: #888888, #FFFFFF;
-$darkGray: #555555, #FFFFFF;
-$blue: #3333AA, #FFFFFF;
-$green: #33B533, #FFFFFF;
-$aqua: #33B5B5, #FFFFFF;
-$red: #B53333, #FFFFFF;
-$purple: #B533B5, #FFFFFF;
-$yellow: #DDDD44, #FFFFFF;
-$white: #CCCCCC, #FFFFFF;
+//$color: label-background-color, label-border, label-color, panel-team-border-color, panel-team-heading-bgcolor, panel-team-color, panel-player-body-background-color
+$black: #000,null,null,#000,#000,#fff,#eee;
+$darkBlue: #0000BE,null,null,#0000BE,#0000BE,#fff,#DEDEFF;
+$darkGreen: #00BE00,null,null,#00BE00,#00BE00,#fff,#AFFFAF;
+$darkAqua: #00BEBE,null,null,#00BEBE,#00BEBE,#fff,#BEFFFF;
+$darkRed: #AA0000,null,null,#BE0000,#BE0000,#fff,#FFDDDD;
+$darkPurple: #BE00BE,null,null,#BE00BE,#BE00BE,#fff,#FFBAFF;
+$gold: #DDAA00, null, null,#DDAA00,#DDAA00,#fff,#FFEABB;
+$gray: #888,null,null,#888,#888,#fff,#eee;
+$darkGray: #555,null,null,#555,#555,#fff,#eee;
+$blue: #3F3FFE,null,null,#3F3FFE,#3F3FFE,#fff,#EDEDFF;
+$green: #3FFE3F, 1px solid #000, #000,#000,#3FFE3F,#000,#DDFFDD;
+$aqua: #3FFEFE, 1px solid #000, #000,#000,#3FFEFE,#000,#EEFFFF;
+$red: #FE3F3F,null,null,#FE3F3F,#FE3F3F,#fff,#FFEEEE;
+$purple: #FE3FFE,null,null,#FE3FFE,#FE3FFE,#fff,#FFE4FF;
+$yellow: #FEFE3F, 1px solid #000, #000, #000,#FEFE3F,#000,#FFFFDD;
+$white: #fff, 1px solid #000, #000,#888,#fff,#000,#eee;
 
 $names: "black","darkBlue","darkGreen","darkAqua","darkRed","darkPurple","gold","gray","darkGray","blue","green","aqua","red","purple","yellow","white";
 $colors: $black $darkBlue $darkGreen $darkAqua $darkRed $darkPurple $gold $gray $darkGray $blue $green $aqua $red $purple $yellow $white;
 
 @for $i from 1 through length($names) {
-  $this-color-fg: nth(nth($colors, $i),1);
-  $this-color-bg: nth(nth($colors, $i),2);
+  //$this-color-fg: nth(nth($colors, $i),1);
+  //$this-color-bg: nth(nth($colors, $i),2);
+  $label-background-color: nth(nth($colors, $i),1);
+  $label-border: nth(nth($colors, $i),2);
+  $label-color: nth(nth($colors, $i),3);
+  $panel-team-border-color: nth(nth($colors, $i),4);
+  $panel-team-heading-bgcolor: nth(nth($colors, $i),5);
+  $panel-team-color: nth(nth($colors, $i),6);
+  $panel-player-body-bgcolor: nth(nth($colors, $i),7);
 
-  .panel-#{nth($names, $i)}{
-    .panel-heading {
-    background-color: $this-color-fg;
-    color: $this-color-bg;
-    }
-    border: 1px solid $this-color-fg;
+  .label.team-#{nth($names, $i)}{
+    background-color: $label-background-color;
+    border: $label-border;
+    color: $label-color;
+  }
+
+  .panel.team-#{nth($names, $i)}{
+    border-color: $panel-team-border-color;
+  }
+  .panel.team-#{nth($names, $i)} > .panel-heading{
+    color: $panel-team-color;
+    background-color: $panel-team-heading-bgcolor;
+    border-color: $panel-team-border-color;
+  }
+  .panel.team-#{nth($names, $i)} > .panel-heading + .panel-collapse .panel-body {
+    border-top-color: $panel-team-border-color;
+  }
+
+  .panel.player-#{nth($names, $i)}{
+    border-color: $panel-team-border-color;
+  }
+  .panel.player-#{nth($names, $i)} > .panel-heading{
+    color: $panel-team-color;
+    background-color: $panel-team-heading-bgcolor;
+    border-color: $panel-team-border-color;
+  }
+  .panel.player-#{nth($names, $i)} > .panel-heading + .panel-collapse .panel-body {
+    border-top-color: $panel-team-border-color;
+  }
+  .panel.player-#{nth($names, $i)} > .panel-body {
+    background-color: $panel-player-body-bgcolor;
   }
 }

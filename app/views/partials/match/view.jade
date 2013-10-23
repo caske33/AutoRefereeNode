@@ -1,57 +1,94 @@
 div(ng-init="initOne()")
-  h1 Map: {{match.map}}
+    .page-header
+      h1
+        | RFW Match 
+        small On {{match.map}}
+      div.row
+        div.col-lg-6.col-xs-12
+          h2 Time
+          p(ng-hide="match.startTime")
+            | Not yet started
+          div(ng-show="match.startTime && match.endTime")
+            //-span.input-group
+              //-span.input-group-addon.label-primary Started On
+              //-span.input-group-addon {{match.startTime | date:'medium'}} UT
+            //-span.input-group
+              //-span.input-group-addon.label-primary Ended On
+              //-span.input-group-addon {{match.endTime | date:'medium'}} UTC
+            //-span
+              //-span.input-group-addon.label-primary Lasted for 
+              //-span.input-group-addon(ng-time-difference, ng-start-time="match.startTime", ng-end-time="match.endTime")
+            span.list-group
+              span.list-group-item
+                | Started on 
+                span.label.label-default {{match.startTime | date:'medium'}} UTC
+              span.list-group-item
+                | Ended on 
+                span.label.label-default {{match.endTime | date:'medium'}} UTC
+              span.list-group-item
+                | Lasted for 
+                span.label.label-default(ng-time-difference, ng-start-time="match.startTime", ng-end-time="match.endTime")
+          div(ng-show="match.startTime && !match.endTime")
+            //-span.input-group
+              //-span.input-group-addon.label-default Started on
+              //-span.input-group-addon {{match.startTime | date:'medium'}} UTC
+            //-span.input-group
+              //-span.input-group-addon.label-default Lasting for 
+              //-span.input-group-addon(ng-time-difference, ng-start-time="match.startTime", ng-end-time="'now'")
+            span.list-group
+              span.list-group-item
+                | Started on 
+                span.label.label-default {{match.startTime | date:'medium'}} UTC
+              span.list-group-item
+                | Lasting for 
+                span.label.label-default(ng-time-difference, ng-start-time="match.startTime", ng-end-time="'now'")
 
+        div.col-lg-6.col-xs-12
+          h2 Teams
+          p(ng-hide="match.teams && match.teams.length != 0")
+            | No teams yet :(
+          ul.list-group
+            li(ng-repeat="team in match.teams").list-group-item.col-sm-6.col-xs-12
+              span.label(class="team-{{team.color}}") {{team.fullname}}
+              span.badge.pull-right {{team.players.length}}
 
-  h2 Time
-  p(ng-hide="match.startTime")
-    | Not yet started
-  dl(ng-show="match.startTime && match.endTime")
-    dt Started On
-    dd {{match.startTime | date:'medium'}} UTC
-    dt Ended On
-    dd {{match.endTime | date:'medium'}} UTC
-    dt Lasted for
-    dd(ng-time-difference, ng-start-time="match.startTime", ng-end-time="match.endTime")
-  dl(ng-show="match.startTime && !match.endTime")
-    dt Started On
-    dd {{match.startTime | date:'medium'}} UTC
-    dt Lasting for
-    dd(ng-time-difference, ng-start-time="match.startTime", ng-end-time="'now'")
-
-
-  h2 Teams
-  p(ng-hide="match.teams && match.teams.length != 0")
-    | No teams yet :(
-  ul
-    li(ng-repeat="team in match.teams") {{team.fullname}}
-
-
-  h2 Players
-  p(ng-hide="match.teams")
-    | No players yet :(
-  div(ng-repeat="team in match.teams")
-    div(ng-repeat="player in team.players").col-xs-4
-      div.panel(class="panel-{{team.color}}")
-        div.panel-heading
-          p.panel-title {{player.ign}} ({{team.fullname}})
-        div.panel-body
-          div
-            i.icon-autoreferee-heart-full(ng-repeat="n in [] | range: player.hp/2")
-            i.icon-autoreferee-heart-half(ng-show="player.hp%2==1")
-            i.icon-autoreferee-heart-empty(ng-repeat="n in [] | range: 10-player.hp/2")
+      div.row
+        div.col-xs-12
+          h2 Players
+          p(ng-hide="match.teams")
+            | No players yet :(
+          .panel-group
+            .panel(ng-repeat="team in match.teams",class="team-{{team.color}}")
+              .panel-heading
+                span.panel-title
+                  {{team.fullname}}
+              .panel-body
+                div(ng-repeat="player in team.players").col-xs-12.col-sm-6.col-lg-4
+                  .panel(class="player-{{team.color}}")
+                    .panel-heading
+                      span.panel-title
+                        | {{player.ign}}
+                        img.pull-right(ng-src='https://minotar.net/helm/{{player.ign}}/16.png')
+                    .panel-body
+                      div
+                        i.icon-autoreferee-heart-full(ng-repeat="n in [] | range: player.hp/2")
+                        i.icon-autoreferee-heart-half(ng-show="player.hp%2==1")
+                        i.icon-autoreferee-heart-empty(ng-repeat="n in [] | range: 10-player.hp/2")
+                        br
+                        //i.icon-autoreferee-hunger-full(ng-repeat="n in [] | range: player.hunger/2")
+                        //i.icon-autoreferee-hunger-half(ng-show="player.hunger%2==1")
+                        //i.icon-autoreferee-hunger-empty(ng-repeat="n in [] | range: 10-player.hunger/2")
+                        //br
+                        span(ng-show="player.armor > 0")
+                          i.icon-autoreferee-armor-full(ng-repeat="n in [] | range: player.armor/2")
+                          i.icon-autoreferee-armor-half(ng-show="player.armor%2==1")
+                          i.icon-autoreferee-armor-empty(ng-repeat="n in [] | range: 10-player.armor/2")
+                          br
+                        i.icon-frown.icon-large  {{player.deaths}} 
+                        i.icon-smile.icon-large  {{player.kills}} 
+                        i.icon-bullseye.icon-large  {{player.accuracy}}% 
+                        i.icon-rocket.icon-large(ng-show="player.killstreak")  {{player.killstreak}} 
+                  br
             br
-            i.icon-autoreferee-hunger-full(ng-repeat="n in [] | range: player.hunger/2")
-            i.icon-autoreferee-hunger-half(ng-show="player.hunger%2==1")
-            i.icon-autoreferee-hunger-empty(ng-repeat="n in [] | range: 10-player.hunger/2")
-            br
-            span(ng-show="player.armor > 0")
-              i.icon-autoreferee-armor-full(ng-repeat="n in [] | range: player.armor/2")
-              i.icon-autoreferee-armor-half(ng-show="player.armor%2==1")
-              i.icon-autoreferee-armor-empty(ng-repeat="n in [] | range: 10-player.armor/2")
-              br
-            i.icon-frown.icon-large  {{player.deaths}} 
-            i.icon-smile.icon-large  {{player.kills}} 
-            i.icon-bullseye.icon-large  {{player.accuracy}}% 
-            i.icon-rocket.icon-large(ng-show="player.killstreak")  {{player.killstreak}} 
 
-
+      a.label.label-info.navbar-fixed-bottom.pull-right(style='width: 260px;') Developed by caske33 | Designed by censink

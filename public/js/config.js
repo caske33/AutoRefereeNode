@@ -13,6 +13,10 @@ window.app.config(['$routeProvider',
       templateUrl: '/partials/match/view',
       controller: 'MatchController'
     }).
+    when('/match/:matchid/:viewname', {
+      templateUrl: function(params){ return '/partials/match/' + params.viewname; },
+      controller: 'MatchController'
+    }).
     otherwise({
       templateUrl: '/partials/404',
       controller: 'MenuController'
