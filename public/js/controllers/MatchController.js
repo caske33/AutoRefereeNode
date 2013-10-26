@@ -109,7 +109,7 @@ angular.module('ARNMatch').controller('MatchController', ['$rootScope','$scope',
 
   function updateTeam(teamname, update){
     angular.forEach($scope.match.teams, function(team){
-      if(team.name === teamname)
+      if(team.fullname === teamname)
         angular.extend(team, update);
     });
   }

@@ -126,7 +126,7 @@ function update_match(message, req, res){
         var teamname = parts[1];
         switch(parts[2].toLowerCase()){
           case "init":
-            req.models.Team.find({match_id: matchid,name: teamname}).remove(function(err){
+            req.models.Team.find({match_id: matchid,fullname: teamname}).remove(function(err){
               if(err)
                 return res.jsonp(err);
 
@@ -144,7 +144,7 @@ function update_match(message, req, res){
             break;
           case "destroy":
             var name = parts[1];
-            req.models.Team.find({match_id: matchid, name: name}).remove(function(err){
+            req.models.Team.find({match_id: matchid, fullname: name}).remove(function(err){
               if(err)
                 return res.jsonp(err);
               else{
@@ -165,7 +165,7 @@ function update_match(message, req, res){
           case "player":
             var addPlayer = (parts[3].charAt(0) === '+');
             ign = parts[3].substring(1);
-            req.models.Team.find({match_id: matchid, name: teamname}).first(function(err, team){
+            req.models.Team.find({match_id: matchid, fullname: teamname}).first(function(err, team){
               if(err)
                 return res.jsonp(err);
 
@@ -297,7 +297,7 @@ function update_match_object(matchid, update, req, res){
 }
 
 function update_team_object(matchid, teamname, update, req, res){
-  req.models.Team.find({name: teamname, match_id: matchid}).first(function(err, team){
+  req.models.Team.find({fullname: teamname, match_id: matchid}).first(function(err, team){
     team.save(update, function(err){
       if(err)
         res.jsonp(err);
