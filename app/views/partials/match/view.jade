@@ -9,15 +9,6 @@ div(ng-init="initOne()")
           p(ng-hide="match.startTime")
             | Not yet started
           div(ng-show="match.startTime && match.endTime")
-            //-span.input-group
-              //-span.input-group-addon.label-primary Started On
-              //-span.input-group-addon {{match.startTime | date:'medium'}} UT
-            //-span.input-group
-              //-span.input-group-addon.label-primary Ended On
-              //-span.input-group-addon {{match.endTime | date:'medium'}} UTC
-            //-span
-              //-span.input-group-addon.label-primary Lasted for 
-              //-span.input-group-addon(ng-time-difference, ng-start-time="match.startTime", ng-end-time="match.endTime")
             span.list-group
               span.list-group-item
                 | Started on 
@@ -29,19 +20,13 @@ div(ng-init="initOne()")
                 | Lasted for 
                 span.label.label-default(ng-time-difference, ng-start-time="match.startTime", ng-end-time="match.endTime")
           div(ng-show="match.startTime && !match.endTime")
-            //-span.input-group
-              //-span.input-group-addon.label-default Started on
-              //-span.input-group-addon {{match.startTime | date:'medium'}} UTC
-            //-span.input-group
-              //-span.input-group-addon.label-default Lasting for 
-              //-span.input-group-addon(ng-time-difference, ng-start-time="match.startTime", ng-end-time="'now'")
             span.list-group
               span.list-group-item
                 | Started on 
                 span.label.label-default {{match.startTime | date:'medium'}} UTC
               span.list-group-item
                 | Lasting for 
-                span.label.label-default(ng-time-difference, ng-start-time="match.startTime", ng-end-time="'now'")
+                span.label.label-default(ng-time-difference, ng-start-time="match.startTime", ng-end-time="'now'" ng-cloak)
 
         div.col-lg-6.col-xs-12
           h2 Teams

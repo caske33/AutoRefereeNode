@@ -252,7 +252,8 @@ function update_match(message, req, res){
             break;
           case "countdown":
             startTime = new Date();
-            startTime.setSeconds(startTime.getSeconds()+parts[3]);
+            seconds = parseInt(parts[3],10);
+            startTime.setSeconds(startTime.getSeconds()+seconds);
             match_update.startTime = startTime;
             update_match_object(matchid, match_update, req, res);
             break;

@@ -6,10 +6,12 @@ angular.module('ARNApp').controller('MenuController', ['$scope', function ($scop
   }, {
     "title": "Live (RMCT)",
     "link": "http://live.rmct.tv",
-    "target": "_blank"
+    "target": "_blank",
+    "icon_class": "icon-play-circle"
   }, {
     "title": "Live (CotM)",
     "link": "http://live.championsofthemap.com",
-    "target": "_blank"
+    "target": "_blank",
+    "icon_class": "icon-play-circle"
   }];
 }]);

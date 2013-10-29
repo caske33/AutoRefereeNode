@@ -16,13 +16,21 @@ App.directive('ngTimeDifference', function($timeout, dateFilter) {
       var diff = (endTime - startTime);
       diff = Math.floor(diff/1000);
 
+      negative = false;
+      if(diff < 0){
+        negative = true;
+        diff = -diff;
+      }
+
       var seconds = diff % 60;
       diff = Math.floor(diff/60);
       var minutes = diff % 60;
-      diff = Math.floor(diff/60);
+      hours = Math.floor(diff/60);
 
-      element.text(" " + (diff !== 0 ? (diff +  " hours, ") : "") + minutes +" minutes, " + seconds + " seconds ");
-      //element.text(startTime);
+      text = " ";
+      if(negative)
+        text += "-";
+      element.text(text + (hours !== 0 ? (hours +  " hours, ") : "") + minutes +" minutes, " + seconds + " seconds ");
     }
 
     // watch the expression, and update the UI on change.

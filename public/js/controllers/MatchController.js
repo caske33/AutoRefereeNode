@@ -128,6 +128,7 @@ angular.module('ARNMatch').controller('MatchController', ['$rootScope','$scope',
   }
 
   function addTeam(team){
+    team.players = new Array();
     $scope.match.teams.push(team);
   }
 
